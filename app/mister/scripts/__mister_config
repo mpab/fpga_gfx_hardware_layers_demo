@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# move to ./config/__mister_config
+MISTER_PROJECT_SLUG="hdmi_overlay_mister"
+MISTER_PROJECT_DIR=_PROJECT
+MISTER_HOST=mister.lan
