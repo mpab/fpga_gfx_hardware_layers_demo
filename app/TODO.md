@@ -44,6 +44,7 @@
 - Vivado
   - [ ] investigate and fix warnings/errors
   - [ ] Project/feature composition
+  - [ ] Replace HDMI_sig_gen with a version created with a clock wizard
 - Vitis
   - [ ] Project/feature composition
 - VHDL
