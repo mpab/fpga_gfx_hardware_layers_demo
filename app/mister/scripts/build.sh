@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-ENV_FP="$(dirname $(realpath $0))/mister_env.sh"
+SCRIPTS_PATH="$(dirname $(realpath $0))"
+
+ENV_FP="${SCRIPTS_PATH}/mister_env.sh"
 if [ ! -f "$ENV_FP" ]; then
     echo "ERROR - no script: $ENV_FP"
     exit
@@ -13,8 +15,14 @@ if [ ! -f "${PROJECT_QPF}" ]; then
     exit
 fi
 
+__MISTER_CONFIG_PATH="./config/__mister_config"
+if [ ! -f "${__MISTER_CONFIG_PATH}" ]; then
+	echo "ERROR - no file: ${__MISTER_CONFIG_PATH}"
+  exit
+fi
+
 SCRIPTS_PATH="$(dirname $(realpath $0))"
-. "${SCRIPTS_PATH}/__mister_config"
+. "${__MISTER_CONFIG_PATH}"
 
 cd "${QUARTUS_PROJECT_NAME}" || exit
 quartus_sh --flow compile "${QUARTUS_PROJECT_NAME}"

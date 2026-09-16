@@ -23,7 +23,7 @@ setws ./
 # the_ROM_image:
 # {
 #     [bootloader]$VIV_PROJ_DIR/pynq_z2_pfm/export/pynq_z2_pfm/sw/pynq_z2_pfm/boot/fsbl.elf
-#     ${PROJECT_ROOT}/hardware/vivado/vivado.runs/${VIVADO_IMPL}/design_1_wrapper.bit
+#     ${PROJECT_ROOT}/hdl/vivado/vivado.runs/${VIVADO_IMPL}/design_1_wrapper.bit
 #     $VIV_PROJ_DIR/hdmi_overlay_app/Debug/$VITIS_APP.elf
 # }"
 

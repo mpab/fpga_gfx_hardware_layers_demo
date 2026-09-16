@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-ENV_FP="$(dirname $(realpath $0))/mister_env.sh"
+SCRIPTS_PATH="$(dirname $(realpath $0))"
+
+ENV_FP="${SCRIPTS_PATH}/mister_env.sh"
 if [ ! -f "$ENV_FP" ]; then
     echo "ERROR - no script: $ENV_FP"
     exit
@@ -9,11 +11,9 @@ fi
 
 PROJECT_QPF="./${QUARTUS_PROJECT_NAME}/${QUARTUS_PROJECT_NAME}.qpf"
 if [ -f "${PROJECT_QPF}" ]; then
-    echo "WARNING - existing project: ${PROJECT_QPF}.qpf"
+    echo "WARNING - existing project: ${PROJECT_QPF}"
     exit
 fi
-
-SCRIPTS_PATH="$(dirname $(realpath $0))"
 
 check_filepath () {
     if [ ! -f "$1" ]; then
@@ -22,9 +22,14 @@ check_filepath () {
     fi
 }
 
-MISTER_CONFIG="${SCRIPTS_PATH}/__mister_config"
-check_filepath "${MISTER_CONFIG}"
-. "${MISTER_CONFIG}"
+__MISTER_CONFIG_PATH="./config/__mister_config"
+if [ ! -f "${__MISTER_CONFIG_PATH}" ]; then
+	mkdir -p config
+	cp "${SCRIPTS_PATH}/__mister_config" "${__MISTER_CONFIG_PATH}"
+fi
+
+check_filepath "${__MISTER_CONFIG_PATH}"
+. "${__MISTER_CONFIG_PATH}"
 
 PROJECT_CLONE="${SCRIPTS_PATH}/project-clone.sh"
 check_filepath "${PROJECT_CLONE}"
