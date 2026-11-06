@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-exit
 FP=$(realpath $0) ; PTH=$(dirname "${FP}") ; _ENV_SH="${PTH}/_env.sh" ; . "${_ENV_SH}"
 
 unset FP_ERR
@@ -13,7 +12,7 @@ info_cp () {
 }
 
 template_cp () {
-  pwrn "template_cp\n"
+  pinf "template_cp\n"
   cat "$1" \
   | sed "s|::MB_PROJ_NAME::|${MB_PROJ_NAME}|g" \
   > "$2"
