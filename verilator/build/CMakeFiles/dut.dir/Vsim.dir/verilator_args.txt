@@ -1,0 +1,1 @@
+C:/Apps/msys64/mingw64/bin/cmake.exe;-E;env;VERILATOR_ROOT=W:/Dev/libraries/verilator;W:/Dev/libraries/verilator/bin/verilator_bin.exe;--compiler;gcc;--prefix;Vsim;--Mdir;W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/dut.dir/Vsim.dir;--make;json;--cc;-y;../../../hdl/src;-O3;--x-assign;fast;--x-initial;fast;--noassert;../../src/sim.sv

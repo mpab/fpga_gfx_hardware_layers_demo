@@ -1,0 +1,4 @@
+W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/sim.dir
+W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/dut.dir
+W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/edit_cache.dir
+W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/rebuild_cache.dir

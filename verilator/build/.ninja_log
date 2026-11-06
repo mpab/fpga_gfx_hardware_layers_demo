@@ -1,0 +1,25 @@
+# ninja log v7
+13	64	8113591545832995	CMakeFiles/dut.dir/Vsim.dir/Vsim.cpp	19cd3261fde4bd92
+13	64	8113591545832995	CMakeFiles/dut.dir/Vsim.dir/Vsim___024root__0.cpp	19cd3261fde4bd92
+13	64	8113591545832995	CMakeFiles/dut.dir/Vsim.dir/Vsim___024root__Slow.cpp	19cd3261fde4bd92
+13	64	8113591545832995	CMakeFiles/dut.dir/Vsim.dir/Vsim___024root__0__Slow.cpp	19cd3261fde4bd92
+13	64	8113591545832995	CMakeFiles/dut.dir/Vsim.dir/Vsim__Syms__Slow.cpp	19cd3261fde4bd92
+13	64	8113591545832995	CMakeFiles/dut.dir/Vsim.dir/Vsim.cmake	19cd3261fde4bd92
+13	64	8113591545832995	W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/dut.dir/Vsim.dir/Vsim.cpp	19cd3261fde4bd92
+13	64	8113591545832995	W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/dut.dir/Vsim.dir/Vsim___024root__0.cpp	19cd3261fde4bd92
+13	64	8113591545832995	W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/dut.dir/Vsim.dir/Vsim___024root__Slow.cpp	19cd3261fde4bd92
+13	64	8113591545832995	W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/dut.dir/Vsim.dir/Vsim___024root__0__Slow.cpp	19cd3261fde4bd92
+13	64	8113591545832995	W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/dut.dir/Vsim.dir/Vsim__Syms__Slow.cpp	19cd3261fde4bd92
+13	64	8113591545832995	W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/dut.dir/Vsim.dir/Vsim.cmake	19cd3261fde4bd92
+65	107	8113591546467748	CMakeFiles/dut.dir/Vsim.dir/Vsim_copy.cmake	6196d1cdeddca88d
+65	107	8113591546467748	W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/CMakeFiles/dut.dir/Vsim.dir/Vsim_copy.cmake	6196d1cdeddca88d
+132	710	8113591547097961	CMakeFiles/dut.dir/W_/Dev/libraries/verilator/include/verilated_threads.cpp.obj	a05748cb20029a77
+127	737	8113591547097961	CMakeFiles/dut.dir/W_/Dev/libraries/verilator/include/verilated.cpp.obj	59f8e8ffc6a929e9
+116	2518	8113591546976967	CMakeFiles/dut.dir/CMakeFiles/dut.dir/Vsim.dir/Vsim___024root__Slow.cpp.obj	6bccbe35699c6f4
+123	2532	8113591547038616	CMakeFiles/dut.dir/CMakeFiles/dut.dir/Vsim.dir/Vsim__Syms__Slow.cpp.obj	572d2add83fa52e0
+108	2546	8113591546865599	CMakeFiles/dut.dir/CMakeFiles/dut.dir/Vsim.dir/Vsim.cpp.obj	f59e02a9e593a67b
+136	2554	8113591547097961	CMakeFiles/sim.dir/W_/publish-git/ref/fpga_gfx_hardware_layers_demo/app/verilator/src/sim.cpp.obj	fc929653e2b2d505
+120	2559	8113591547018559	CMakeFiles/dut.dir/CMakeFiles/dut.dir/Vsim.dir/Vsim___024root__0__Slow.cpp.obj	238b5ce540de0e0
+112	3135	8113591546941507	CMakeFiles/dut.dir/CMakeFiles/dut.dir/Vsim.dir/Vsim___024root__0.cpp.obj	6b0dff4f046497bf
+3135	3220	8113591577172140	libdut.a	d40665c048462528
+3221	3477	8113591577959286	sim.exe	582b449497498b19

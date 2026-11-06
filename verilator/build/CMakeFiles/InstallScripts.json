@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"W:/publish-git/ref/fpga_gfx_hardware_layers_demo/verilator/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
