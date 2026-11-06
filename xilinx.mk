@@ -1,4 +1,4 @@
-#! make -f 
+#!/usr/bin/make -f
 MAKE_SELF := $(notdir $(MAKE)) -f $(lastword $(MAKEFILE_LIST))
 ################################################################################
 # FPGA application makefile
