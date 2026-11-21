@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 // generates clk and video_clk_tmds from sysclk
-module HDMI_sig_gen #(
+module hdmi_sig_gen #(
     COORDSPC = 16  // coordinate space (bits)
 ) (
     input wire sysclk,  // 125MHz
@@ -109,4 +109,4 @@ module HDMI_sig_gen #(
       .O(clkfb_out),  // 1-bit output: Clock output
       .I(clkfb_in)    // 1-bit input: Clock input
   );
-endmodule  // HDMI_sig_gen
+endmodule  // hdmi_sig_gen

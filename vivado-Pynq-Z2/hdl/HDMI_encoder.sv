@@ -4,7 +4,7 @@
 // edited/updated for vivado 2020.1 by Dominic Meads 10/2020
 // refactored/updated for vivado 2023.x mpab
 
-module HDMI_encoder #(
+module hdmi_encoder #(
     COLSPC = 10  // color space (bits)
 ) (
     input wire clk,
@@ -29,22 +29,22 @@ module HDMI_encoder #(
   // 8b/10b encoding for transmission
   logic [COLSPC-1:0] tmds_red, tmds_green, tmds_blue;
 
-  // instantiate TMDS encoders (TMDS_encoder.vhd file from github)
-  TMDS_encoder encode_red (
+  // instantiate TMDS encoders (tmds_encoder.vhd file from github)
+  tmds_encoder encode_red (
       .clk (clk),
       .VD  (red),
       .CD  (2'b00),
       .VDE (video_enable),
       .TMDS(tmds_red)
   );
-  TMDS_encoder encode_green (
+  tmds_encoder encode_green (
       .clk (clk),
       .VD  (green),
       .CD  (2'b00),
       .VDE (video_enable),
       .TMDS(tmds_green)
   );
-  TMDS_encoder encode_blue (
+  tmds_encoder encode_blue (
       .clk(clk),
       .VD(blue),
       .CD({v_sync, h_sync}),
@@ -128,4 +128,4 @@ module HDMI_encoder #(
   );
 
   // End of OBUFDS_inst instantiation
-endmodule  // HDMI_encoder
+endmodule  // hdmi_encoder

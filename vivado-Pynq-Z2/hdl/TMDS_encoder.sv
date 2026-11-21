@@ -3,7 +3,7 @@
 // (c) fpga4fun.com & KNJN LLC 2013
 // refactored/updated for vivado 2023.x mpab
 
-module TMDS_encoder #(
+module tmds_encoder #(
     COLSPC = 10  // color space (bits)
 ) (
     input wire clk,
@@ -29,4 +29,4 @@ module TMDS_encoder #(
     TMDS <= VDE ? TMDS_data : TMDS_code;
     balance_acc <= VDE ? balance_acc_new : 4'h0;
   end
-endmodule  // TMDS_encoder
+endmodule  // tmds_encoder

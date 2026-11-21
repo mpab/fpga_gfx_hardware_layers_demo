@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module top_HDMI #(
+module top_hdmi #(
     COORDSPC = 16,  // coordinate space (bits)
     COLSPC   = 10   // color space (bits)
 ) (
@@ -16,13 +16,11 @@ module top_HDMI #(
   logic [  COLSPC-1:0] red;
   logic [  COLSPC-1:0] green;
   logic [  COLSPC-1:0] blue;
-  
-  HDMI_sig_gen sig_gen (.*);
-  HDMI_encoder encoder (.*);
-  
+  hdmi_sig_gen sig_gen (.*);
+  hdmi_encoder encoder (.*);
   // TODO: connect reset
   logic reset, signals_valid, beam_at_zero, h_blank, v_blank;  // unused in this application
   VIDEO_timing_signals video_signals (.*);
   VIDEO_source source (.*);
 
-endmodule  // top_HDMI
+endmodule  // top_hdmi

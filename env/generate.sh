@@ -46,10 +46,10 @@ MB_VIVADO_PLATFORM_DIR="\${MB_APP_ROOT}\${MB_VIVADO_OPT}-${MB_XILINX_PLATFORM_OP
 check_path_exp MB_VIVADO_PLATFORM_DIR
 MB_VIVADO_PLATFORM_HDL_PATH="\${MB_VIVADO_PLATFORM_DIR}/hdl/"
 check_path_exp MB_VIVADO_PLATFORM_HDL_PATH
+MB_VIVADO_PLATFORM_CONSTRAINTS_PATH="\${MB_VIVADO_PLATFORM_DIR}/constraints/"
+check_path_exp MB_VIVADO_PLATFORM_CONSTRAINTS_PATH
 MB_VIVADO_PLATFORM_DESIGN_TCL_FP="\${MB_VIVADO_PLATFORM_DIR}/tcl/design_1.tcl"
 check_filepath_exp MB_VIVADO_PLATFORM_DESIGN_TCL_FP
-MB_VIVADO_PLATFORM_XDC_FP="\${MB_VIVADO_PLATFORM_DIR}/constraints/constraints.xdc"
-check_filepath_exp MB_VIVADO_PLATFORM_XDC_FP
 
 MB_VIVADO_OUT_DIR="\${MB_XILINX_PLATFORM_OPT}_\${MB_VIVADO_OPT}_\${MB_XILINX_VERSION}"
 MB_VIVADO_OUT_PATH="\${MB_APP_OUT_PDIR}/\${MB_VIVADO_OUT_DIR}/"
@@ -128,7 +128,13 @@ MB_MISTER_OUT_RBF_FP="\${MB_MISTER_OUT_OUTPUT_FILES_PATH}\${MB_MISTER_OPT}.rbf"
 
 # ============================================================================================================
 # verilator and sanity checks
-check_path_exp VERILATOR_ROOT
+VERILATOR_CMD=$(command -v verilator)
+if [ -z "${VERILATOR_CMD}" ]; then
+  pwrn "verilator not found\n"
+else
+  VERILATOR_ROOT=$(verilator --getenv VERILATOR_ROOT)
+  check_path_exp VERILATOR_ROOT
+fi
 
 MB_VERILATOR_OPT="verilator"
 

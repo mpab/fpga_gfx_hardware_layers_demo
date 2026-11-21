@@ -25,6 +25,14 @@ set design_name design_1
 # you can create a design using the following command:
 #    create_bd_design $design_name
 
+# Creating design if neede# CHANGE DESIGN NAME HERE
+variable design_name
+set design_name design_1
+
+# If you do not already have an existing IP Integrator design open,
+# you can create a design using the following command:
+#    create_bd_design $design_name
+
 # Creating design if needed
 set errMsg ""
 set nRet 0
@@ -93,8 +101,8 @@ set bCheckIPsPassed 1
 set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
-xilinx.com:ip:processing_system7:5.5\
 xilinx.com:ip:clk_wiz:6.0\
+xilinx.com:ip:processing_system7:5.5\
 "
 
    set list_ips_missing ""
@@ -120,7 +128,7 @@ xilinx.com:ip:clk_wiz:6.0\
 set bCheckModules 1
 if { $bCheckModules == 1 } {
    set list_check_mods "\ 
-top_HDMI_\
+top_hdmi_\
 "
 
    set list_mods_missing ""
@@ -190,9 +198,33 @@ proc create_root_design { parentCell } {
 
   # Create ports
   set hdmi_tx_d_p [ create_bd_port -dir O -from 2 -to 0 hdmi_tx_d_p ]
-  set hdmi_tx_clk_n [ create_bd_port -dir O -type clk hdmi_tx_clk_n ]
   set hdmi_tx_d_n [ create_bd_port -dir O -from 2 -to 0 hdmi_tx_d_n ]
   set hdmi_tx_clk_p [ create_bd_port -dir O -type clk hdmi_tx_clk_p ]
+  set hdmi_tx_clk_n [ create_bd_port -dir O -type clk hdmi_tx_clk_n ]
+
+  # Create instance: top_hdmi_0, and set properties
+  set block_name top_hdmi_
+  set block_cell_name top_hdmi_0
+  if { [catch {set top_hdmi_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $top_hdmi_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: clk_wiz_0, and set properties
+  set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_0 ]
+  set_property -dict [list \
+    CONFIG.CLKOUT1_JITTER {125.247} \
+    CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {125.000} \
+    CONFIG.CLK_OUT1_PORT {sys_125M_clk} \
+    CONFIG.MMCM_CLKOUT0_DIVIDE_F {8.000} \
+    CONFIG.PRIM_SOURCE {No_buffer} \
+    CONFIG.RESET_PORT {resetn} \
+    CONFIG.RESET_TYPE {ACTIVE_LOW} \
+  ] $clk_wiz_0
+
 
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
@@ -343,7 +375,7 @@ proc create_root_design { parentCell } {
     CONFIG.PCW_GPIO_MIO_GPIO_ENABLE {1} \
     CONFIG.PCW_GPIO_MIO_GPIO_IO {MIO} \
     CONFIG.PCW_GPIO_PERIPHERAL_ENABLE {0} \
-    CONFIG.PCW_I2C_RESET_ENABLE {1} \
+    CONFIG.PCW_I2C_RESET_ENABLE {0} \
     CONFIG.PCW_I2C_RESET_POLARITY {Active Low} \
     CONFIG.PCW_IMPORT_BOARD_PRESET {None} \
     CONFIG.PCW_INCLUDE_ACP_TRANS_CHECK {0} \
@@ -552,6 +584,7 @@ proc create_root_design { parentCell } {
     CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_1 {-0.006} \
     CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_2 {-0.009} \
     CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_3 {-0.033} \
+    CONFIG.PCW_PACKAGE_NAME {clg400} \
     CONFIG.PCW_PCAP_PERIPHERAL_CLKSRC {IO PLL} \
     CONFIG.PCW_PCAP_PERIPHERAL_FREQMHZ {200} \
     CONFIG.PCW_PERIPHERAL_BOARD_PRESET {None} \
@@ -722,48 +755,18 @@ proc create_root_design { parentCell } {
   ] $processing_system7_0
 
 
-  # Create instance: clk_wiz_0, and set properties
-  set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_0 ]
-  set_property -dict [list \
-    CONFIG.CLKOUT1_JITTER {125.247} \
-    CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {125.000} \
-    CONFIG.MMCM_CLKOUT0_DIVIDE_F {8.000} \
-    CONFIG.PRIM_SOURCE {No_buffer} \
-    CONFIG.RESET_PORT {resetn} \
-    CONFIG.RESET_TYPE {ACTIVE_LOW} \
-  ] $clk_wiz_0
-
-
-  # Create instance: top_HDMI_0, and set properties
-  set block_name top_HDMI_
-  set block_cell_name top_HDMI_0
-  if { [catch {set top_HDMI_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $top_HDMI_0 eq "" } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
   # Create interface connections
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
 
   # Create port connections
-  connect_bd_net -net clk_wiz_0_clk_out1  [get_bd_pins clk_wiz_0/clk_out1] \
-  [get_bd_pins top_HDMI_0/sysclk]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0  [get_bd_pins processing_system7_0/FCLK_CLK0] \
-  [get_bd_pins clk_wiz_0/clk_in1]
-  connect_bd_net -net processing_system7_0_FCLK_RESET0_N  [get_bd_pins processing_system7_0/FCLK_RESET0_N] \
-  [get_bd_pins clk_wiz_0/resetn]
-  connect_bd_net -net top_HDMI_0_hdmi_tx_clk_n  [get_bd_pins top_HDMI_0/hdmi_tx_clk_n] \
-  [get_bd_ports hdmi_tx_clk_n]
-  connect_bd_net -net top_HDMI_0_hdmi_tx_clk_p  [get_bd_pins top_HDMI_0/hdmi_tx_clk_p] \
-  [get_bd_ports hdmi_tx_clk_p]
-  connect_bd_net -net top_HDMI_0_hdmi_tx_d_n  [get_bd_pins top_HDMI_0/hdmi_tx_d_n] \
-  [get_bd_ports hdmi_tx_d_n]
-  connect_bd_net -net top_HDMI_0_hdmi_tx_d_p  [get_bd_pins top_HDMI_0/hdmi_tx_d_p] \
-  [get_bd_ports hdmi_tx_d_p]
+  connect_bd_net -net clk_wiz_0_sys_125M_clk [get_bd_pins clk_wiz_0/sys_125M_clk] [get_bd_pins top_hdmi_0/sys_125M_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins clk_wiz_0/clk_in1]
+  connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins clk_wiz_0/resetn]
+  connect_bd_net -net top_hdmi_0_hdmi_tx_clk_n [get_bd_pins top_hdmi_0/hdmi_tx_clk_n] [get_bd_ports hdmi_tx_clk_n]
+  connect_bd_net -net top_hdmi_0_hdmi_tx_clk_p [get_bd_pins top_hdmi_0/hdmi_tx_clk_p] [get_bd_ports hdmi_tx_clk_p]
+  connect_bd_net -net top_hdmi_0_hdmi_tx_d_n [get_bd_pins top_hdmi_0/hdmi_tx_d_n] [get_bd_ports hdmi_tx_d_n]
+  connect_bd_net -net top_hdmi_0_hdmi_tx_d_p [get_bd_pins top_hdmi_0/hdmi_tx_d_p] [get_bd_ports hdmi_tx_d_p]
 
   # Create address segments
 
