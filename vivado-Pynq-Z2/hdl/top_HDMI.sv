@@ -20,7 +20,7 @@ module top_hdmi #(
   hdmi_encoder encoder (.*);
   // TODO: connect reset
   logic reset, signals_valid, beam_at_zero, h_blank, v_blank;  // unused in this application
-  VIDEO_timing_signals video_signals (.*);
-  VIDEO_source source (.*);
+  video_timing_signals vts (.*);
+  video_source vs (.*);
 
 endmodule  // top_hdmi

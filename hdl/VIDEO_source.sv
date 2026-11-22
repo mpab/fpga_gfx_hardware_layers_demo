@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module VIDEO_source #(
+module video_source #(
     COORDSPC = 16,  // coordinate space (bits)
     COLSPC   = 10   // color space (bits)
 ) (

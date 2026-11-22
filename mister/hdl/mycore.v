@@ -28,7 +28,7 @@ module mycore #(
   logic [COORDSPC-1:0] beam_x;
   logic [COORDSPC-1:0] beam_y;
 
-  VIDEO_timing_signals video_signals (
+  video_timing_signals vts (
       .clk(clk),
       .reset(reset),
       .signals_valid(ce_pix),
@@ -44,7 +44,7 @@ module mycore #(
       .beam_y(beam_y)
   );
 
-  VIDEO_source video_source (
+  video_source vs (
       .clk(clk),
       .video_enable(video_enable),
       .h_sync(HSync),

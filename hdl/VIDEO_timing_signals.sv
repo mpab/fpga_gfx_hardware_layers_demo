@@ -4,7 +4,7 @@
 // https://vanhunteradams.com/DE1/VGA_Driver/Driver.html
 // https://adaptivesupport.amd.com/s/article/899769?language=en_US
 
-module VIDEO_timing_signals #(
+module video_timing_signals #(
     parameter H_RES         = 640,  // drawable columns
     parameter H_FRONT_PORCH = 16,   // horizontal front porch
     parameter H_SYNC_PULSE  = 96,   // horizontal sync
@@ -119,4 +119,4 @@ module VIDEO_timing_signals #(
     end
   end
 
-endmodule  // VIDEO_timing_signals
+endmodule  // video_timing_signals

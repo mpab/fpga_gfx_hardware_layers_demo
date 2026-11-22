@@ -20,6 +20,6 @@ module sim #(
     output logic [COLSPC-1:0] blue
 );
   logic signals_valid, beam_at_zero, h_blank, v_blank;  // unused
-  VIDEO_timing_signals video_signals (.*);
-  VIDEO_source source (.*);
+  video_timing_signals vts (.*);
+  video_source vs (.*);
 endmodule
