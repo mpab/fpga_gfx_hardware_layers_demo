@@ -1,0 +1,2 @@
+reset,signals_valid,video_enable,beam_at_zero,h_sync,v_sync,h_blank,v_blank,frame_start,line_start,beam_x,beam_y
+0,0,1,1,1,1,0,0,0,0,0,0
